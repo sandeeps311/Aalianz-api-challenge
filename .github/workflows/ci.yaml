@@ -38,9 +38,9 @@ jobs:
       - name: Build Docker image
         run: docker build -t allianz-api-challenge .
 
-      - name: Push Docker image to registry
-        uses: docker://your_image_name
-        with:
-          registry-url: https://docker.pkg.github.com
-          username: ${{ github.actor }}
-          password: ${{ secrets.GITHUB_TOKEN }}
+#      - name: Push Docker image to registry
+#        uses: docker://your_image_name
+#        with:
+#          registry-url: https://docker.pkg.github.com
+#          username: ${{ github.actor }}
+#          password: ${{ secrets.GITHUB_TOKEN }}
