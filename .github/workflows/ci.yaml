@@ -38,6 +38,7 @@ jobs:
       - name: Build Docker image
         run: docker build -t allianz-api-challenge .
 
+
 #      - name: Push Docker image to registry
 #        uses: docker://your_image_name
 #        with:
