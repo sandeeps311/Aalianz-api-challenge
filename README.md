@@ -1,1 +1,1 @@
-# Aalianz-api-challenge
+# allianz-api-challenge
