@@ -33,7 +33,7 @@ jobs:
 
       - name: Run unittests
         run: |
-          python -m unittest discover -s tests -p '*_test.py'
+          python -m unittest discover -v -s tests -p 'test_*.py'
 
       - name: Build Docker image
         run: docker build -t allianz-api-challenge .
