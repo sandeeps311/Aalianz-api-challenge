@@ -1,0 +1,8 @@
+fastapi
+uvicorn
+requests
+textblob
+flake8
+pytest
+ruff
+pre-commit
