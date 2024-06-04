@@ -10,6 +10,7 @@ on:
 
 jobs:
   build:
+    name: Build and Run Tests
     runs-on: ubuntu-latest
 
     steps:
@@ -35,13 +36,23 @@ jobs:
         run: |
           python -m unittest discover -v -s tests -p 'test_*.py'
 
-      - name: Build Docker image
-        run: docker build -t allianz-api-challenge .
+  push_to_registry:
+    name: Build and Push Docker Image to Docker Hub
+    runs-on: ubuntu-latest
+    needs: build
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
 
+      - name: Login to Docker registry
+        uses: docker/login-action@v3
+        with:
+          username: ${{secrets.DOCKERHUB_USERNAME}}
+          password: ${{secrets.DOCKERHUB_TOKEN}}
 
-#      - name: Push Docker image to registry
-#        uses: docker://your_image_name
-#        with:
-#          registry-url: https://docker.pkg.github.com
-#          username: ${{ github.actor }}
-#          password: ${{ secrets.GITHUB_TOKEN }}
+      - name: Build and push Docker image to registry
+        uses: docker/build-push-action@v5
+        with:
+          context: .  # Specify the path to your Dockerfile and related files
+          push: true
+          tags: sandy311/mlops-allianz:latest
